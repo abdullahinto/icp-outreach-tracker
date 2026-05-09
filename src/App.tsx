@@ -210,18 +210,6 @@ export default function App() {
 
   const activeIcp = useMemo(() => icps.find(icp => icp.id === activeIcpId) || null, [icps, activeIcpId]);
 
-  if (authLoading) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-         <Loader2 className="w-8 h-8 animate-spin text-[#FF6321]" />
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <LoginScreen />;
-  }
-
   const filteredIcps = useMemo(() => {
     let result = icps;
 
@@ -506,6 +494,18 @@ export default function App() {
       return next;
     });
   };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+         <Loader2 className="w-8 h-8 animate-spin text-[#FF6321]" />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginScreen />;
+  }
 
   return (
     <div className="flex-1 w-full max-w-[1400px] mx-auto p-4 md:p-6 overflow-hidden flex flex-col gap-4 font-sans text-[#e5e5e5]">
